@@ -1,0 +1,12 @@
+set nu
+set ts=4
+set mouse=a
+set shiftwidth=4
+set hlsearch
+set noeb
+set vb t_vb=
+
+execute "set listchars=tab:»" . '\ ' | set list  | hi SpecialKey ctermfg=green
+"execute pathogen#infect()
+syntax on
+"filetype plugin indent on

@@ -1,0 +1,11 @@
+vim刷新文件
+:e
+:e!		强制丢掉本地修改从磁盘加载文件
+
+
+search
+next:n
+prev:shift+n
+
+search后取消高亮
+:noh

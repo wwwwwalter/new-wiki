@@ -1,0 +1,16 @@
+set -e
+set -x
+
+
+repo sync -cdj5 --no-tags 
+
+# delete untracted file
+repo forall -p -c "git clean -dff"
+
+#delete tracted file
+repo abandon clean
+repo abandon lunch
+
+#clean
+repo start clean --all
+repo start lunch --all

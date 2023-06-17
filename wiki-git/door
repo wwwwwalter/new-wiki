@@ -1,0 +1,138 @@
+#初始化本地客户端仓库
+git init
+
+#init
+touch README.md
+git add .
+git commit -s
+git log
+
+#映射服务器
+git remote add coding git@git.dev.tencent.com:wwwwwalter/wiki.git
+git remote -vv
+git remote remove coding
+
+#git push coding local:server
+git push coding master:master
+git push coding HEAD:master
+git push coding HEAD:refs/heads/master
+git branch --set-upstream-to=coding/master master
+git push -u coding master
+git push
+
+#git pull coding server:local
+git pull coding master:master
+git pull
+#pull force
+git fetch --all
+git reset --hard coding/master
+git pull
+
+#新建本地分支
+git branch new
+git checkout -b new
+
+#向服务器推送新分支
+git push coding new:new
+
+#绑定服务器上已有分支
+git branch --set-upstream-to=coding/new new
+git branch --set-upstream-to=coding/new master
+
+#删除本地分支
+git branch -D new
+
+#直接删除服务器上的分支,本地分支仍保留
+git push coding _:new
+
+#删除本地伪远程分支，服务器上已经没有的
+git remote prune coding
+
+#强制覆盖本地文件
+git reset --hard HEAD~1
+
+git fetch
+git fetch all
+git reset --hard coding/master
+-------------------------------------------------------
+#常规命令
+git branch -vv
+
+git branch -avv
+
+git remote -vv
+
+git status
+
+#初始化服务器仓库
+git init --bare
+
+-------------------------------------------------------
+#显示git命令
+REPO_TRACE=1 repo sync
+
+#找.git
+git rev-parse --show-toplevel
+
+#合并多条commit为一条commit
+git rebase -i 2234243435
+edit:
+pick
+s
+s
+s
+s
+s
+edit:
+commit message
+
+#参看目标目录commit记录
+git log path/filename
+
+#show diff
+git log -p filename
+
+
+#git clean
+#删除 untracked files
+-f:删除文件
+-d:删除目录
+-n:提前询问
+-x:删除.gitignore中排除的文件
+-ff:submodule
+
+git clean -df
+git clean -dfx
+
+repo forall -c "git clean -df"
+repo forall -p -c "git status"
+
+#删除 tracked files
+git reset -hard HEAD
+
+#repo sync特定模块
+repo forall -c 'echo $REPO_PROJECT'
+repo forall -c 'echo $REPO_PROJECT' | grep recovery
+platform/bootable/recovery
+repo sync platform/bootable/recovery
+
+
+#比较个数
+repo forall -p -c 'git status' | grep project | wc -l
+repo forall -c 'echo $REPO_PROJECT' | wc -l
+#如果git < repo,说明sync出了问题
+#需要到处文件做对比
+
+#从git中获取模块名
+repo forall -p -c 'git status' | grep project
+repo forall -p -c 'git status' | grep project | cut -d " " -f 2
+repo forall -p -c 'git status' | grep project | cut -d " " -f 2 >> name.1
+#从manifest中获取模块名
+repo forall -p -c 'echo $REPO_PROJECT' | cut -d "/" -f 4-10 >> name.2
+diff name.1 name.2
+
+
+#检查代码是否有untraced/add uncommit < repo project nums
+repo forall -p -c 'git status' | grep 'directory clean' | wc -l
+
+

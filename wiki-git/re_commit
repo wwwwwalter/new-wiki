@@ -1,0 +1,27 @@
+#修改最近一次
+git commit --amend -s  ==> git cmds
+
+
+
+#修改以前的
+locate:master
+git checkout -b tt
+git reset --hard 123123
+git cmds
+vim
+git checkout master
+git rebase tt
+#此时master已经把tt修改的那一次压在下面了，并且master的不好的那一次被覆盖了
+git lg --all
+git push -f
+git branch -D tt
+#但是rebase之上的git lg时间都变为rebase的时间了，但是git log的时间还是原来commit的时间
+
+
+
+
+#别人怎么pull呢
+git fetch
+git reset --hard origin/HEAD
+git lg
+#OK

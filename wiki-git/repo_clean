@@ -1,0 +1,11 @@
+set -x
+set -e
+repo abandon clean
+repo abandon lunch
+repo sync -cjd5 --no-tags
+repo start clean --all
+repo start lunch --all
+
+source build/envsetup.sh
+lunch gordon_peak-userdebug
+echo $?

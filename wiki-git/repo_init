@@ -1,0 +1,87 @@
+set -x
+set -e
+
+mkdir master
+
+cd master
+
+repo init -u ssh://android.intel.com/manifests -b android/master -m r1
+
+repo sync -cdj5 --no-tags
+
+sync_ret=$?
+
+echo "`date` repo sync return: $sync_ret" >> result
+
+repo start clean --all
+
+repo start lunch --all
+
+project_numbers=`repo forall -c 'echo $REPO_PROJECT' | wc -l`
+
+echo "`date` project numbers: $project_numbers" >> result
+
+clean_numbers=`repo forall -c 'git status' | grep 'directory clean' | wc -l`
+
+echo "`date` clean numbers: $clean_numbers" >> result
+
+echo `repo forall -p -c 'git status'` >> statusfile
+:<<EOF
+source build/envsetup.sh
+
+lunch gordon_peak-userdebug
+
+./device/intel/mixins/mixin-update
+
+make -j8
+
+echo "`date` make -j8 result: $?" >> result
+
+make dist -j8
+
+echo "`date` make dist -j8 result: $?" >> result
+EOF
+
+cd ~/server
+mkdir celadon
+
+cd celadon
+
+# repo init -u ssh://android.intel.com/manifests -b android/master -m r1
+
+repo init -u ssh://android.intel.com/manifests -b android/celadon -m r2
+
+repo sync -cdj5 --no-tags
+
+sync_ret=$?
+
+echo "`date` repo sync return: $sync_ret" >> result
+
+repo start clean --all
+
+repo start lunch --all
+
+project_numbers=`repo forall -c 'echo $REPO_PROJECT' | wc -l`
+
+echo "`date` project numbers: $project_numbers" >> result
+
+clean_numbers=`repo forall -c 'git status' | grep 'directory clean' | wc -l`
+
+echo "`date` clean numbers: $clean_numbers" >> result
+
+echo `repo forall -p -c 'git status'` >> statusfile
+:<<EOF
+source build/envsetup.sh
+
+lunch celadon_ivi-userdebug
+
+./device/intel/mixins/mixin-update
+
+make -j8
+
+echo "`date` make -j8 result: $?" >> result
+
+make dist -j8
+
+echo "`date` make dist -j8 result: $?" >> result
+EOF

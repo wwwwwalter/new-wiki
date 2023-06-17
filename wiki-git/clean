@@ -1,0 +1,17 @@
+#check untracted file
+repo forall -p -c "git clean -ndf"
+
+# delete untracted file
+repo forall -p -c "git clean -dff"
+
+#delete tracted file
+repo abandon clean
+repo abandon lunch
+
+#clean
+repo sync -cdj5 --no-tags 
+repo start clean --all
+repo start lunch --all
+
+#numbers
+repo forall -p -c "git status" | grep clean | wc -l

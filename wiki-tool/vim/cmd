@@ -1,0 +1,5 @@
+vim 临时显示行号
+:set nu
+
+vim 临时取消行号
+:set nonumber

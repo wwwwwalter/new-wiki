@@ -1,0 +1,97 @@
+[review "https://android.intel.com"]
+    username = ziyigaox
+
+[review "gerrit.rds.intel.com"]
+    username = ziyigaox
+[review "opticm6.rds.intel.com"]
+    username = ziyigaox
+
+[review "git-amr-3.devtools.intel.com"]
+    username = ziyigaox
+
+
+[url "ssh://ziyigaox@android.intel.com:29418/"]
+    pushInsteadOf=https://android.intel.com/
+    pushInsteadOf=ssh://android.intel.com/
+    pushInsteadOf=ssh://android.intel.com:29418/
+    pushInsteadOf=ssh://jfumg-gcrmirror.jf.intel.com/
+    pushInsteadOf=ssh://jfumg-gcrmirror.jf.intel.com:29418/
+    pushInsteadOf=ssh://android-mirror.devtools.intel.com/
+    pushInsteadOf=ssh://android-mirror.devtools.intel.com:29418/
+    pushInsteadOf=ssh://android-mirror-or.devtools.intel.com/
+    pushInsteadOf=ssh://android-mirror-or.devtools.intel.com:29418/
+
+[url "https://github.com/"]
+    insteadOf=git://github.com/
+    
+[url "ssh://ziyigaox@android.intel.com:29418/"]
+; [url "ssh://ziyigaox@android-mirror-sh.devtools.intel.com:29418/"]
+; [url "ssh://ziyigaox@mcg-psi-gcr-glb.sh.intel.com:29418/"]
+    insteadOf=git://android.intel.com/
+    insteadOf=ssh://android.intel.com/
+    insteadOf=https://android.intel.com/ ; 2.1s
+    insteadOf=https://ziyigaox@android.intel.com/ ; 2.1s
+    insteadOf=ssh://android.intel.com:29418/
+    insteadOf=git://android-mirror-or.devtools.intel.com/
+    insteadOf=ssh://android-mirror-or.devtools.intel.com/
+    insteadOf=ssh://android-mirror-or.devtools.intel.com:29418/
+    insteadOf=git://android-mirror.devtools.intel.com/
+    insteadOf=ssh://android-mirror.devtools.intel.com/
+    insteadOf=ssh://android-mirror.devtools.intel.com:29418/
+    insteadOf=git://jfumg-gcrmirror.jf.intel.com/
+    insteadOf=ssh://jfumg-gcrmirror.jf.intel.com/
+    insteadOf=ssh://jfumg-gcrmirror.jf.intel.com:29418/
+    insteadOf=ssh://mcg-devgcr-sc1.jf.intel.com/ ; could not resolve
+    insteadOf=git://mcg-devgcr-sc1.jf.intel.com/ ; could not resolve
+    insteadOf=ssh://jfumg-gcrmirror.jf.intel.com/
+    insteadOf=git://jfumg-gcrmirror.jf.intel.com/
+    insteadOf=git://android.intel.com/
+    insteadOf=ssh://mcg-devgcr-sc1.jf.intel.com/
+    insteadOf=git://mcg-devgcr-sc1.jf.intel.com/
+    insteadOf=ssh://android.intel.com:29418/
+    insteadOf=ssh://android.intel.com/
+
+[review "android.intel.com:8080"]
+        username = ziyigaox
+
+[review "mcg-cts-gcr.jf.intel.com:8080"] 
+        username = ziyigaox
+[review "ctegerrit.sh.intel.com:8080"] 
+        username = ziyigaox
+
+[core]
+  ;  whitespace = cr-at-eol
+	autocrlf = input
+	safecrlf = warn
+	editor = vim
+	quotepath = false
+[color]
+	ui = true
+	; filemode = false
+[user]
+	name = Gao,ZiyiX
+	;email = ziyix.gao@intel.com
+	email = 15221024927@163.com
+[alias]
+	ci = commit
+	co = checkout
+	br = branch
+
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	ss = status
+    sss = status -s
+    cs = commit -s
+    cmds = commit --amend -s
+[codecheck]
+
+[push]
+	default = current
+; [http]
+; 	sslverify = false
+; 	proxy = http://child-prc.intel.com:913/
+;[https]
+; 	proxy = https://child-prc.intel.com:913/
+[ssh]
+	variant = ssh
+[credential]
+	helper = store

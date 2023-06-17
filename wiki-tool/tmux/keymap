@@ -1,0 +1,8 @@
+#window
+tmux ls
+tmux attach -t 0 #恢复
+tmux kill-session -t 0 #杀死
+
+
+#pane
+pre + x    yes

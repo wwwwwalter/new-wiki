@@ -1,0 +1,41 @@
+#install Guake
+sudo apt install guake
+
+
+
+#tmux
+git clone https://github.com/tmux/tmux.git
+git show
+git checkout 2.9
+
+sudo apt install automake
+sudo apt install libevent-dev
+sudo apt install gcc
+sudo apt install ncurses-dev
+
+sh autogen.sh
+./configure && make
+sudo make install
+done!
+
+
+#tmux_config 基本
+cd tmux
+git clone --recursive https://github.com/tony/tmux-config.git
+ln -sf ~/tools/tmux/tmux/tmux-config/.tmux.conf ~/.tmux.conf
+备份了一份.tmux.conf，copy to ~/
+
+#tmux_cofig 高级
+cd tmux-config/vendor/tmux-mem-cpu-load
+mkdir build
+cd build
+sudo apt install cmake
+cmake ..
+make
+sudo make install
+done!
+
+
+#tmux 快捷键
+predix ctrl+q
+

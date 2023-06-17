@@ -1,0 +1,30 @@
+#USE
+window:
+git config --global core.autocrlf true
+git config --global core.safecrlf warn
+
+linux:
+git config --global core.autocrlf input
+git config --global core.safecrlf warn
+
+
+# autocrlf
+windows:        git config --global core.autocrlf true : CRLF ->  LF   -> CRLF /LF -> LF -> LF
+linux:          git config --global core.autocrlf input: CRLF ->  LF   -> LF   /LF -> LF -> LF
+windows/linux:  git config --global core.autocrlf false: CRLF ->  CRLF -> CRLF
+
+
+(true)windows(CRLF) -> LF -> (true)  windows (CRLF)
+                          -> (input) linux   (CRLF)
+
+# safecrlf
+#只在autocrlf true/input 时才生效
+git config --global core.safecrlf false: 不闻不问
+git config --global core.safecrlf true : 不符合时拒绝入库
+git config --global core.safecrlf warn : 不符合时警告
+    autocrlf true  -> waring:LF will be replaced by CRLF in file (git add 时报的其实是git checkout 的超前预警)
+    autocrlf input -> waring:CRLF will be repaced by LF  in file (git add 时报的其实是git add 的预警)
+
+
+#link
+https://blog.csdn.net/dhhome2006/article/details/83190141
